@@ -1,0 +1,145 @@
+{
+  "DocumentMetadata": {
+    "Pages": 1
+  },
+  "Blocks": [
+    {
+      "BlockType": "PAGE",
+      "Geometry": {
+        "BoundingBox": {
+          "Width": 1.0,
+          "Height": 1.0,
+          "Left": 0.0,
+          "Top": 0.0
+        }
+      },
+      "Id": "page-1",
+      "Relationships": [
+        {
+          "Type": "CHILD",
+          "Ids": ["key-1", "key-2", "key-3", "word-1", "word-2", "word-3", "word-4", "word-5", "word-6"]
+        }
+      ]
+    },
+    {
+      "BlockType": "KEY_VALUE_SET",
+      "EntityTypes": ["KEY"],
+      "Id": "key-1",
+      "Relationships": [
+        {
+          "Type": "CHILD",
+          "Ids": ["word-1"]
+        },
+        {
+          "Type": "VALUE",
+          "Ids": ["value-1"]
+        }
+      ],
+      "Confidence": 95.5
+    },
+    {
+      "BlockType": "WORD",
+      "Id": "word-1",
+      "Text": "9 add lines 1z, 2b, 3b, 4b, 5b, 6b, 7, and 8. this is your total income 9",
+      "Confidence": 99.0
+    },
+    {
+      "BlockType": "KEY_VALUE_SET",
+      "EntityTypes": ["VALUE"],
+      "Id": "value-1",
+      "Relationships": [
+        {
+          "Type": "CHILD",
+          "Ids": ["word-2"]
+        }
+      ],
+      "Confidence": 94.2
+    },
+    {
+      "BlockType": "WORD",
+      "Id": "word-2",
+      "Text": "280,300.",
+      "Confidence": 98.5
+    },
+    {
+      "BlockType": "KEY_VALUE_SET",
+      "EntityTypes": ["KEY"],
+      "Id": "key-2",
+      "Relationships": [
+        {
+          "Type": "CHILD",
+          "Ids": ["word-3"]
+        },
+        {
+          "Type": "VALUE",
+          "Ids": ["value-2"]
+        }
+      ],
+      "Confidence": 96.1
+    },
+    {
+      "BlockType": "WORD",
+      "Id": "word-3",
+      "Text": "10 adjustments to income from schedule 1, line 26 10",
+      "Confidence": 99.2
+    },
+    {
+      "BlockType": "KEY_VALUE_SET",
+      "EntityTypes": ["VALUE"],
+      "Id": "value-2",
+      "Relationships": [
+        {
+          "Type": "CHILD",
+          "Ids": ["word-4"]
+        }
+      ],
+      "Confidence": 93.8
+    },
+    {
+      "BlockType": "WORD",
+      "Id": "word-4",
+      "Text": "9,631.",
+      "Confidence": 97.9
+    },
+    {
+      "BlockType": "KEY_VALUE_SET",
+      "EntityTypes": ["KEY"],
+      "Id": "key-3",
+      "Relationships": [
+        {
+          "Type": "CHILD",
+          "Ids": ["word-5"]
+        },
+        {
+          "Type": "VALUE",
+          "Ids": ["value-3"]
+        }
+      ],
+      "Confidence": 95.7
+    },
+    {
+      "BlockType": "WORD",
+      "Id": "word-5",
+      "Text": "11 subtract line 10 from line 9. this is your adjusted gross income 11",
+      "Confidence": 98.8
+    },
+    {
+      "BlockType": "KEY_VALUE_SET",
+      "EntityTypes": ["VALUE"],
+      "Id": "value-3",
+      "Relationships": [
+        {
+          "Type": "CHILD",
+          "Ids": ["word-6"]
+        }
+      ],
+      "Confidence": 94.5
+    },
+    {
+      "BlockType": "WORD",
+      "Id": "word-6",
+      "Text": "260,000.",
+      "Confidence": 98.1
+    }
+  ]
+}
