@@ -45,9 +45,13 @@ class TestParse1040:
         
         # Check parsed values from real Textract response
         fields = data['fields']
+        print(fields)
         assert fields['line_9'] == 280300.0
         assert fields['line_10'] == 9631.0
         assert fields['line_11'] == 270669.0
+        assert fields['line_12'] == 27800.0
+        assert fields['line_13'] == 0.0
+        assert fields['line_14'] == 27800.0
         
         # Check validation: line 11 should equal line 9 - line 10
         assert fields['is_valid'] is True
@@ -114,3 +118,38 @@ class TestParse1040:
         assert 'error' in data
         assert 'PDF' in data['error'] or 'pdf' in data['error']
 
+    # Created with help of ChatGPT
+    @patch("app.textract_helper.boto3.client")
+    @patch("app.main.extract_fields_with_vlm")
+    def test_vlm_fallback_when_textract_incomplete(self, mock_vlm, mock_boto_client):
+        """Test that VLM fallback is used when Textract does not return required fields"""
+        # Textract returns empty so required fields (9–11) are missing
+        mock_textract = MagicMock()
+        mock_boto_client.return_value = mock_textract
+        mock_textract.analyze_document.return_value = {"Blocks": []}
+
+        # VLM returns usable fake values
+        mock_vlm.return_value = {
+            "line_9": 100000.0,
+            "line_10": 5000.0,
+            "line_11": 95000.0,
+            "line_12": 27700.0,
+            "line_13": 0.0,
+            "line_14": 27700.0,
+        }
+
+        dummy_doc = b"fake pdf content"
+        file_data = BytesIO(dummy_doc)
+        response = client.post(
+            "/parse-1040",
+            files={"file": ("test_1040.pdf", file_data, "application/pdf")}
+        )
+
+        # Assertions
+        assert response.status_code == 200
+        data = response.json()
+        assert data["success"] is True
+        fields = data["fields"]
+        assert fields["source"] == "vlm"
+        assert fields["line_11"] == 95000.0
+        assert fields["is_valid"] is True  # 100000 - 5000 = 95000
