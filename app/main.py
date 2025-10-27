@@ -162,6 +162,7 @@ async def parse_1040(file: UploadFile = File(...)):
     blocks = textract_response.get('Blocks', [])
     textract_dict = textract_to_dict(blocks)
     dyn = Form1040DynamicFields()
+    # Could add textract_dict to dyn fields for less overall compute
 
     for key_text, value_text in textract_dict.items():
         if is_line_match(key_text, 9, "total", "income") or "9 add lines" in key_text:
